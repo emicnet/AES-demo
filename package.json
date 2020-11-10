@@ -1,0 +1,23 @@
+{
+  "name": "aes-demo",
+  "version": "1.0.0",
+  "description": "aes demo using crypto-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "aes"
+  ],
+  "author": "qiulang",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "uuid": "^8.3.1"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  }
+}
