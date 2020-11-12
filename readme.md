@@ -36,7 +36,7 @@ console.log(originalText); // 'my message'
 
    
 
-2. Java 对128 bits 秘钥做了 `SHA1PRNG` 伪随机处理，js没有对应 `SHA1PRNG`算法，但是实际试验中发现对于 128 bits , 也就是 32长度的 hex string 经过两次sha1 可以得到一样结果。sha1两次处理得到长度32的hex string 还要再转成 128 bits：
+2. Java 对128 bits 秘钥（seed）做了 `SHA1PRNG` 伪随机处理，js没有对应 `SHA1PRNG`算法，但是实际试验中发现对于 128 bits , 也就是 32长度的 hex string 经过两次sha1 可以得到一样结果。sha1两次处理得到长度32的hex string 还要再转成 128 bits：
 
 ```java
 // Java 代码，key是32位 hex string
@@ -48,6 +48,12 @@ CryptoJS.enc.Hex.parse(hex-string)
 ```
 
 注，转换成功的原因还待查，但确实得到**一样结果**，另外网上搜到的这个 js 实现，试了好像不好用 https://github.com/bombworm/SHA1PRNG 
+
+从  [Use of “SHA1PRNG” in SecureRandom Class](https://stackoverflow.com/questions/12726434/use-of-sha1prng-in-securerandom-class) 这里看到的讨论：
+
+> `"SHA1PRNG"` is the name of a pseudo random number generator (the PRNG in the name). That means that it uses the SHA1 hash function to generate a stream of random numbers. SHA1PRNG is a proprietary mechanism introduced by Sun at the time... PRNG's are deterministic. That means that they will always generate the same stream of random numbers from the same input material (the "seed")... Note that implementations of SHA1PRNG may differ among JCA providers / different runtimes. The code on Android particularly is different and less stable than the SUN SHA1PRNG. 
+
+但我们至少确认 Java 8在window/linux平台算出值和CryptoJS 算出是一样的。
 
 
 
