@@ -57,7 +57,7 @@ CryptoJS.enc.Hex.parse(hex-string)
 
 
 
-3. Java 实现最终返回结果是 Base64.encodeBase64URLSafeString 即返回 URLSafeString ， 试了几个npm 包，发现 `base64-url` 较新，可用。
+3. crypto-js aes-128编码后得到的是 4个word 数组，即128位的 hex string，`toString()` 会转成base64的编码串；但 Java 实现最终返回结果是 Base64.encodeBase64URLSafeString 即返回 URLSafeString ， 试了几个npm 包，发现 `base64-url` 较新，可用。
 
   
 

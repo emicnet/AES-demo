@@ -36,7 +36,9 @@ function codec2() {
     var bytes = CryptoJS.AES.decrypt(ciphertext, key)
     var originalText = bytes.toString(CryptoJS.enc.Utf8)
 
-    console.log(`${caller} ECB 加密串: ${ciphertext}`)
+    console.log(
+        `${caller} ECB 加密串 cipher.toString: ${ciphertext} --> CryptoJS.enc.Base64 ${cipher.ciphertext}`
+    )
     console.log(
         `${caller} ECB 加密串 base64: ${ciphertext64} vs ${ciphertext642}`
     )
@@ -107,3 +109,17 @@ let tag = base64url.escape('dys+klCC1unYJXUFAm85Dg==')
 let t2 = base64url.unescape(`dys-klCC1unYJXUFAm85Dg`)
 
 console.log(`${tag} vs ${t2}`)
+
+function simple() {
+    // Encrypt
+    var tmp = CryptoJS.AES.encrypt('my message', 'secret key 123')
+    let ciphertext = tmp.toString()
+    console.log(`${ciphertext} --- ${CryptoJS.enc.Base64.parse(ciphertext)}`)
+    // Decrypt
+    var bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
+    var originalText = bytes.toString(CryptoJS.enc.Utf8)
+
+    console.log(originalText) // 'my message'
+}
+
+simple()
