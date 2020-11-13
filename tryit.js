@@ -112,9 +112,15 @@ console.log(`${tag} vs ${t2}`)
 
 function simple() {
     // Encrypt
+    //https://stackoverflow.com/questions/22875419/cryptojs-how-to-generate-aes-passphrase
     var tmp = CryptoJS.AES.encrypt('my message', 'secret key 123')
+    var key = tmp.key
     let ciphertext = tmp.toString()
-    console.log(`${ciphertext} --- ${CryptoJS.enc.Base64.parse(ciphertext)}`)
+    console.log(
+        `${ciphertext} --- ${CryptoJS.enc.Base64.parse(
+            ciphertext
+        )} using key ${key}`
+    )
     // Decrypt
     var bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
     var originalText = bytes.toString(CryptoJS.enc.Utf8)

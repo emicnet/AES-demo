@@ -11,6 +11,9 @@ var CryptoJS = require("crypto-js");
  
 // Encrypt
 var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
+// 输入字符串的会被用作 passphrase,生成 256 bits 的实际key
+// ciphertext.key 是根据输入 passphrase 实际生成的 key
+// 参见 https://stackoverflow.com/questions/22875419/cryptojs-how-to-generate-aes-passphrase
  
 // Decrypt
 var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
